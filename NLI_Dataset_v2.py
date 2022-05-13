@@ -23,9 +23,9 @@ tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True, model_max_l
 model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=3, label2id=label2id, id2label=id2label).to(device)  
 
 ## MNLI
-dataset_train_mnli = load_dataset('multi_nli', split="train")  # split='train'
-dataset_test_mnli_m = load_dataset('multi_nli', split="validation_matched")  # split='train'
-dataset_test_mnli_mm = load_dataset('multi_nli', split="validation_mismatched")  # split='train'
+dataset_train_mnli = load_dataset('multi_nli', split="train") 
+dataset_test_mnli_m = load_dataset('multi_nli', split="validation_matched") 
+#dataset_test_mnli_mm = load_dataset('multi_nli', split="validation_mismatched") 
 
 print(dataset_train_mnli['premise'][:4])
 print(dataset_train_mnli['hypothesis'][:4])
