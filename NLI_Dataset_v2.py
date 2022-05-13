@@ -1,7 +1,5 @@
 import pandas as pd
 import numpy as np
-import torch
-from torch.utils.data import DataLoader
 
 import torch
 from datasets import load_dataset, load_metric, Dataset, DatasetDict
