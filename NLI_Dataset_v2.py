@@ -2,12 +2,10 @@ import pandas as pd
 import numpy as np
 import torch
 from torch.utils.data import DataLoader
-import os
 
 import torch
 from datasets import load_dataset, load_metric, Dataset, DatasetDict
-from transformers import AutoModelForSequenceClassification,AutoModelWithLMHead, AutoTokenizer, AutoConfig, DataCollatorWithPadding, DataCollator
-from transformers import DataCollatorForSeq2Seq
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, DataCollatorWithPadding
 from transformers import TrainingArguments, Trainer
 
 
@@ -37,12 +35,12 @@ dynamic_padding = True
 
 if dynamic_padding == False:
     def tokenize_func(examples):
-        return tokenizer(examples["premise"], examples["hypothesis"], truncation=True, max_length=256)  # max_length=512,  padding=True
+        return tokenizer(examples["premise"], examples["hypothesis"], truncation=True, max_length=256) 
 
 ## dynamic padding
 elif  dynamic_padding == True:
     def tokenize_func(examples):
-        return tokenizer(examples["premise"], examples["hypothesis"], truncation=True)  # max_length=512,  padding=True
+        return tokenizer(examples["premise"], examples["hypothesis"], truncation=True)  
 
 encoded_dataset_train = dataset_train_mnli.map(tokenize_func, batched=True)
 encoded_dataset_test = dataset_test_mnli_m.map(tokenize_func, batched=True)
